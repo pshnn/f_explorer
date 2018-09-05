@@ -1,14 +1,17 @@
-<h1>Explorer</h1>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Size</th>
+      <th scope="col">Modification Date</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Size</th>
-    <th>Modification Date</th>
-  </tr>
-
-  <% files.each do |file| %>
-    <%= render('folder_row', folder: file) if file.type == 'folder' %>
-    <%= render('file_row', file: file) if file.type == 'file' %>
-  <% end %>
+  <tbody>
+    <% files.each do |file| %>
+      <%= render('folder_row', folder: file) if file.type == 'folder' %>
+      <%= render('file_row', file: file) if file.type == 'file' %>
+    <% end %>
+  </tbody>
 </table>

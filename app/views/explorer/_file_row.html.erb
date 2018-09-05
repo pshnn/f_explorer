@@ -3,6 +3,22 @@
   <td><%= file.size %></td>
   <td><%= file.client_modified %></td>
   <td>
-    <%= link_to 'Delete', delete_file_path(path: file.path), method: :delete %>
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle"
+              type="button"
+              id="dropdownMenuButton"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+      >
+        Actions
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <%= link_to 'Delete',
+                    delete_file_path(path: file.path),
+                    class: 'dropdown-item',
+                    method: :delete %>
+      </div>
+    </div>
   </td>
 </tr>
