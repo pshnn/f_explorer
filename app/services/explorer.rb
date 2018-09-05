@@ -24,9 +24,6 @@ class Explorer
     client.list_folder path
   end
 
-  DropBoxFolder = Struct.new(:name, :path, :type)
-  DropBoxFile = Struct.new(:name, :path, :size, :client_modified, :server_modified, :type)
-
   def build_structure(content)
     result = []
     content.entries.map(&:to_hash).each do |c|
@@ -40,9 +37,13 @@ class Explorer
     result
   end
 
+  DropBoxFolder = Struct.new(:name, :path, :type)
+
   def create_folder(params)
     DropBoxFolder.new(params['name'], params['path_lower'], params['.tag'])
   end
+
+  DropBoxFile = Struct.new(:name, :path, :size, :client_modified, :server_modified, :type)
 
   def create_file(params)
     DropBoxFile.new(
