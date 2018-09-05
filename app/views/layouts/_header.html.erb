@@ -3,10 +3,10 @@
     <%= link_to 'FExplorer', root_path, class: 'navbar-brand' %>
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
+        <li class="nav-item <%= active_class root_path %>">
           <%= link_to 'Home', root_path, class: 'nav-link' %>
         </li>
-        <li class="nav-item">
+        <li class="nav-item <%= active_class explorer_path %>">
           <%= link_to 'Explorer', explorer_path, class: 'nav-link' %>
         </li>
         <li class="nav-item">
