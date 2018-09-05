@@ -1,0 +1,8 @@
+<tr>
+  <td><%= file.name %></td>
+  <td><%= file.size %></td>
+  <td><%= file.client_modified %></td>
+  <td>
+    <%= link_to 'Delete', delete_file_path(path: file.path), method: :delete %>
+  </td>
+</tr>
