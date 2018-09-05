@@ -15,12 +15,12 @@ gem 'sqlite3'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
 
+gem 'bootstrap', '~> 4.1.3'
 gem 'dotenv-rails'
 gem 'dropbox_api'
+gem 'jquery-rails'
 
 group :development, :test do
-  gem 'byebug', platforms: %i[mri mingw x64_mingw]
-
   gem 'pry'
 end
 
@@ -30,8 +30,8 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'web-console', '>= 3.3.0'
 
-  gem 'rubocop', require: false
   gem 'pry-rails'
+  gem 'rubocop', require: false
 end
 
 group :test do
