@@ -2,6 +2,8 @@
 
 # Explorer
 class Explorer
+  class NotFoundError < StandardError; end
+
   def initialize(params = {})
     @client = params.fetch :client, nil
   end
@@ -14,6 +16,8 @@ class Explorer
 
   def destroy(path)
     client.delete path
+  rescue DropboxApi::Errors::NotFoundError
+    raise NotFoundError
   end
 
   private
@@ -43,7 +47,9 @@ class Explorer
     DropBoxFolder.new(params['name'], params['path_lower'], params['.tag'])
   end
 
-  DropBoxFile = Struct.new(:name, :path, :size, :client_modified, :server_modified, :type)
+  DropBoxFile = Struct.new(
+    :name, :path, :size, :client_modified, :server_modified, :type
+  )
 
   def create_file(params)
     DropBoxFile.new(

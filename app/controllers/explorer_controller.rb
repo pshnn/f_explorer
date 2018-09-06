@@ -8,6 +8,11 @@ class ExplorerController < ApplicationController
 
   def destroy_file
     explorer.destroy path
+
+    flash[:success] = 'File was deleted!'
+    redirect_to explorer_path
+  rescue Explorer::NotFoundError
+    flash[:error] = 'Something went wrong!'
     redirect_to explorer_path
   end
 
