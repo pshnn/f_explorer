@@ -14,10 +14,19 @@ class ExplorerController < ApplicationController
   private
 
   def render_explore
-    render :explore, locals: { files: explorer.explore(params[:path]) }
+    render(
+      :explore,
+      locals: {
+        files: explorer.explore(params[:path]), breadcrumbs: breadcrumbs
+      }
+    )
   end
 
   def explorer
     @explorer ||= Explorer.new(client: client)
+  end
+
+  def breadcrumbs
+    @breadcrumbs ||= BreadcrumbsService.new(path: params[:path]).call
   end
 end

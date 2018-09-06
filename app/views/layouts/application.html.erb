@@ -19,6 +19,9 @@
     <%= render 'layouts/header' %>
 
     <main class="container" role="main">
+
+      <%= yield :breadcrumbs %>
+
       <%= yield %>
     </main>
   </body>
