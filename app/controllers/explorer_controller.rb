@@ -7,7 +7,7 @@ class ExplorerController < ApplicationController
   end
 
   def destroy_file
-    explorer.destroy params[:path]
+    explorer.destroy path
     redirect_to explorer_path
   end
 
@@ -17,7 +17,7 @@ class ExplorerController < ApplicationController
     render(
       :explore,
       locals: {
-        files: explorer.explore(params[:path]), breadcrumbs: breadcrumbs
+        files: explorer.explore(path), breadcrumbs: breadcrumbs
       }
     )
   end
@@ -27,6 +27,10 @@ class ExplorerController < ApplicationController
   end
 
   def breadcrumbs
-    @breadcrumbs ||= BreadcrumbsService.new(path: params[:path]).call
+    @breadcrumbs ||= BreadcrumbsService.new(path: path).call
+  end
+
+  def path
+    @path ||= params[:path]
   end
 end
