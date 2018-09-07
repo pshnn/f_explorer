@@ -41,24 +41,11 @@ class Explorer
     result
   end
 
-  DropBoxFolder = Struct.new(:name, :path, :type)
-
   def create_folder(params)
-    DropBoxFolder.new(params['name'], params['path_lower'], params['.tag'])
+    DropboxFolder.new params
   end
 
-  DropBoxFile = Struct.new(
-    :name, :path, :size, :client_modified, :server_modified, :type
-  )
-
   def create_file(params)
-    DropBoxFile.new(
-      params['name'],
-      params['path_lower'],
-      params['size'],
-      params['client_modified'],
-      params['client_modified'],
-      params['.tag']
-    )
+    DropboxFile.new params
   end
 end
