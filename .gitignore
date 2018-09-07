@@ -32,3 +32,6 @@
 
 # dotenv
 .env
+
+# RSpec
+spec/vcr/*
