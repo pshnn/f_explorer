@@ -20,11 +20,12 @@ gem 'dotenv-rails'
 gem 'dropbox_api'
 gem 'filesize'
 gem 'jquery-rails'
-gem 'vcr'
 
 group :development, :test do
   gem 'pry'
   gem 'rspec-rails', '~> 3.8'
+  gem 'vcr'
+  gem 'webmock'
 end
 
 group :development do
