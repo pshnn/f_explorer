@@ -8,12 +8,12 @@ class ExplorerController < ApplicationController
 
   def destroy_file
     explorer.destroy path
-
-    flash[:success] = 'File was deleted!'
-    redirect_to explorer_path
+    render json: {
+      success: true,
+      payload: { path: path, filename: filename }
+    }, status: 200
   rescue Explorer::NotFoundError
-    flash[:error] = 'Something went wrong!'
-    redirect_to explorer_path
+    render json: { success: false }, status: 422
   end
 
   private
@@ -37,5 +37,9 @@ class ExplorerController < ApplicationController
 
   def path
     @path ||= params[:path]
+  end
+
+  def filename
+    path.split('/').last
   end
 end

@@ -1,24 +1,9 @@
-<tr>
+<tr data-path="<%= folder.path %>">
+  <td><input type="checkbox"></td>
   <td><%= link_to folder.name, explorer_path(path: folder.path) %></td>
   <td>--</td>
   <td>--</td>
   <td>
-    <div class="dropdown">
-      <button class="btn btn-secondary dropdown-toggle"
-              type="button"
-              id="dropdownMenuButton"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-      >
-        Actions
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <%= link_to 'Delete',
-                    delete_file_path(path: "#{folder.path}"),
-                    class: 'dropdown-item',
-                    method: :delete %>
-      </div>
-    </div>
+    <%= render 'actions' %>
   </td>
 </tr>
