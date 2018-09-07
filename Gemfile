@@ -18,8 +18,9 @@ gem 'uglifier', '>= 1.3.0'
 gem 'bootstrap', '~> 4.1.3'
 gem 'dotenv-rails'
 gem 'dropbox_api'
-gem 'jquery-rails'
 gem 'filesize'
+gem 'jquery-rails'
+gem 'vcr'
 
 group :development, :test do
   gem 'pry'
