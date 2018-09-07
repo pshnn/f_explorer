@@ -1,24 +1,52 @@
-# README
+# FExplorer
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a simple application showing off wrapper around Dropbox API.
 
-Things you may want to cover:
+## Setup
 
-* Ruby version
+#### Pre-requirements
 
-* System dependencies
+  - RVM
+  - Dropbox account
 
-* Configuration
+First of all you need to clone the project:
 
-* Database creation
+```sh
+$ git clone https://github.com/pshnn481/f_explorer.git
+$ cd f_explorer
+```
 
-* Database initialization
+Install gems:
 
-* How to run the test suite
+```sh
+$ bundle install
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+Create .env file or just copy .env.example file:
 
-* Deployment instructions
+```sh
+$ cp .env.example .env
+```
 
-* ...
+#### Dropbox Public folders
+Public folders [was disabled](https://www.dropbox.com/help/files-folders/public-folder) for all users since September 1, 2017.
+To be able to work with your Dropbox storage you need to complete several steps:
+
+- Log In into your Dropbox account
+- Create connected app in [developers section](https://www.dropbox.com/developers)
+- Obtain OAuth2 access token
+(*Developers section > My apps > [Your App Name] > Generated access token*)
+
+Now when you have OAuth2 token you can paste it into your .env file under `DROPBOX_OAUTH_BEARER` key.
+
+So your .env file should look like this:
+```sh
+DROPBOX_OAUTH_BEARER='your_OAuth2_token'
+```
+
+Now run Rails server:
+```sh
+$ rails server
+```
+
+Application will be running on `localhost:3000`
