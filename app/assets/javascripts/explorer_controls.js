@@ -7,8 +7,8 @@ $(document).on('turbolinks:load', function () {
   });
 
   $('.popover-dismiss').popover({
-  trigger: 'focus'
-})
+    trigger: 'focus'
+  });
 
   var $mainCheckbox = $('input#main[type=checkbox]'),
       $tableBodyCheckboxes = $('tbody input[type=checkbox]'),
@@ -53,15 +53,6 @@ $(document).on('turbolinks:load', function () {
     });
 
     return path_collection;
-  };
-
-  function displayWarningFlash (message) {
-    var flash = buildFlash(message);
-
-    displayFlash(flash);
-    hideFlash(25);
-
-
   };
 
   function displayFlash (type, message) {
