@@ -3,6 +3,7 @@
 # Explorer
 class Explorer
   class NotFoundError < StandardError; end
+  class WrongPathError < StandardError; end
 
   def initialize(params = {})
     @client = params.fetch :client, nil
@@ -12,6 +13,12 @@ class Explorer
     path = '' if path.nil?
     opened_path_content = open_path path
     build_structure opened_path_content
+  end
+
+  def create_folder(path:, folder_name:)
+    client.create_folder build_new_folder_path(path, folder_name)
+  rescue DropboxApi::Errors::HttpError
+    raise WrongPathError
   end
 
   def destroy(path)
@@ -24,6 +31,10 @@ class Explorer
 
   attr_reader :client
 
+  def build_new_folder_path(path, folder_name)
+    "#{path}/#{folder_name}"
+  end
+
   def open_path(path)
     client.list_folder path
   end
@@ -33,19 +44,19 @@ class Explorer
     content.entries.map(&:to_hash).each do |c|
       case c['.tag']
       when 'folder'
-        result << create_folder(c)
+        result << build_folder(c)
       when 'file'
-        result << create_file(c)
+        result << build_file(c)
       end
     end
     result
   end
 
-  def create_folder(params)
+  def build_folder(params)
     DropboxFolder.new params
   end
 
-  def create_file(params)
+  def build_file(params)
     DropboxFile.new params
   end
 end
